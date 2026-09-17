@@ -5,7 +5,7 @@ cd /d "%~dp0"
 where node >nul 2>nul
 if errorlevel 1 (
   echo.
-  echo xcursorfatiguex needs Node.js, which is not installed yet.
+  echo Cursor Sobriety Check needs Node.js, which is not installed yet.
   echo.
   echo 1. Open https://nodejs.org
   echo 2. Download the LTS version and install it.
@@ -16,7 +16,7 @@ if errorlevel 1 (
 )
 
 echo.
-echo Installing xcursorfatiguex...
+echo Installing Cursor Sobriety Check...
 echo.
 node cli.mjs install
 echo.

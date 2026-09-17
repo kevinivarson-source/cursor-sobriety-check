@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * xcursorfatiguex CLI
+ * Cursor Sobriety Check CLI
  *
  *   node cli.mjs install
  *   node cli.mjs uninstall
@@ -29,7 +29,7 @@ import { DATA_DIR, EVENTS_LOG, LAYER_ROOT, PRODUCT_NAME, REPORT_HTML, USER_HOOKS
 import { loadEvents, writeReport } from './report.mjs';
 
 const HELP = `
-xcursorfatiguex — a small, free add-on for Cursor
+Cursor Sobriety Check — a small, free add-on for Cursor
 by Durellem Ltd  ·  https://www.durellem.com
 
 What it does
@@ -45,7 +45,7 @@ Commands
   node cli.mjs install --here   Set it up for this project only
   node cli.mjs install --observe-only
                                 Log only; do not remind or warn
-  node cli.mjs uninstall        Remove xcursorfatiguex (keeps your log)
+  node cli.mjs uninstall        Remove Cursor Sobriety Check (keeps your log)
   node cli.mjs status           Check that it is working
   node cli.mjs report [--open]  Write a summary; --open shows it in a browser
 

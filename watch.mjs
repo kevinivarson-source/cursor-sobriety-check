@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * xcursorfatiguex — hook handler.
+ * Cursor Sobriety Check — hook handler.
  *
  * Cursor sends one JSON event on stdin and reads one JSON reply on stdout.
  * This script always fails open: even if it crashes, Cursor continues.

@@ -1,12 +1,12 @@
 {
   "version": 1,
   "hooks": {
-    "sessionStart": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/xcursorfatiguex/watch.mjs\"" }],
-    "sessionEnd": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/xcursorfatiguex/watch.mjs\"" }],
-    "beforeSubmitPrompt": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/xcursorfatiguex/watch.mjs\"" }],
-    "afterFileEdit": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/xcursorfatiguex/watch.mjs\"" }],
-    "afterShellExecution": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/xcursorfatiguex/watch.mjs\"" }],
-    "preCompact": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/xcursorfatiguex/watch.mjs\"" }],
-    "stop": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/xcursorfatiguex/watch.mjs\"" }]
+    "sessionStart": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-sobriety-check/watch.mjs\"" }],
+    "sessionEnd": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-sobriety-check/watch.mjs\"" }],
+    "beforeSubmitPrompt": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-sobriety-check/watch.mjs\"" }],
+    "afterFileEdit": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-sobriety-check/watch.mjs\"" }],
+    "afterShellExecution": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-sobriety-check/watch.mjs\"" }],
+    "preCompact": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-sobriety-check/watch.mjs\"" }],
+    "stop": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-sobriety-check/watch.mjs\"" }]
   }
 }

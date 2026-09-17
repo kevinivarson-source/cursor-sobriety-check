@@ -1,4 +1,4 @@
-# xcursorfatiguex
+# Cursor Sobriety Check
 
 A free, one-click add-on for [Cursor](https://cursor.com).
 
@@ -20,7 +20,7 @@ You need [Node.js LTS](https://nodejs.org) once. If `node -v` already prints a v
 
 ### Windows
 
-1. Download this folder: [Code → Download ZIP](https://github.com/kevinivarson-source/xcursorfatiguex/archive/refs/heads/main.zip), then unzip it somewhere permanent, for example `Documents\xcursorfatiguex`.
+1. Download this folder: [Code → Download ZIP](https://github.com/kevinivarson-source/cursor-sobriety-check/archive/refs/heads/main.zip), then unzip it somewhere permanent, for example `Documents\cursor-sobriety-check`.
 2. Double-click **`INSTALL.bat`**.
 3. Use Cursor as normal.
 
@@ -35,7 +35,7 @@ You need [Node.js LTS](https://nodejs.org) once. If `node -v` already prints a v
 Paste this into a new chat:
 
 ```text
-Please install xcursorfatiguex from this folder. Run: node cli.mjs install
+Please install Cursor Sobriety Check from this folder. Run: node cli.mjs install
 Then tell me whether status looks good.
 ```
 
@@ -59,7 +59,7 @@ To remove it: double-click **`UNINSTALL.bat`**. Your private log stays until you
 
 | In Cursor | What it means |
 | --- | --- |
-| Nothing most of the time | Good. xcursorfatiguex is quiet on purpose. |
+| Nothing most of the time | Good. Cursor Sobriety Check is quiet on purpose. |
 | A warning that the chat is almost full | Cursor is about to compress memory. If answers start to drift, **start a new chat**. |
 | A report that mentions “possible corrections” | Your next prompt looked like “no, don’t do that”. Treat it as a hint, not a verdict. |
 
@@ -88,7 +88,7 @@ The installer writes into `~/.cursor/hooks.json` and **keeps any other hooks you
 
 - Reminding is not enforcing. The model can still ignore rules.
 - “Correction” detection is simple pattern matching.
-- Each hook starts a short Node process. The events used here are infrequent. Fine-grained `postToolUse` logging is deliberately not included, so xcursorfatiguex stays light.
+- Each hook starts a short Node process. The events used here are infrequent. Fine-grained `postToolUse` logging is deliberately not included, so Cursor Sobriety Check stays light.
 
 ---
 

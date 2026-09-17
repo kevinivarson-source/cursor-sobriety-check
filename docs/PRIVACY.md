@@ -1,6 +1,6 @@
 # Privacy
 
-xcursorfatiguex never sends data off this computer. There is no account, no telemetry, and no network call in the code.
+Cursor Sobriety Check never sends data off this computer. There is no account, no telemetry, and no network call in the code.
 
 ## What is stored
 

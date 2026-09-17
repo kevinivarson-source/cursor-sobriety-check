@@ -1,6 +1,6 @@
-# How xcursorfatiguex works
+# How Cursor Sobriety Check works
 
-xcursorfatiguex is a thin wrapper around Cursor's public [Hooks API](https://cursor.com/docs/hooks). It does not read Cursor's internal databases.
+Cursor Sobriety Check is a thin wrapper around Cursor's public [Hooks API](https://cursor.com/docs/hooks). It does not read Cursor's internal databases.
 
 ## Install
 

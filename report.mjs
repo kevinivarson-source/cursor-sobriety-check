@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * xcursorfatiguex — report
+ * Cursor Sobriety Check — report
  *
  * Reads ~/.xcursorfatiguex/events.jsonl and writes a plain-language summary
  * (markdown + a double-clickable HTML page). Pattern matching is a hint,
