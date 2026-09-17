@@ -5,7 +5,7 @@
   "description": "A free, one-click add-on for Cursor. Reminds the agent of your rules, warns you when chat memory is compressed, and keeps a private local report.",
   "type": "module",
   "bin": {
-    "cursor-sobriety-check": "./cli.mjs"
+    "cursor-sobriety-check": "./bin/cursor-sobriety-check"
   },
   "scripts": {
     "cursor-sobriety-check:install": "node cli.mjs install",
