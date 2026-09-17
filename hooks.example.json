@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-layer/watch.mjs\"" }],
+    "sessionEnd": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-layer/watch.mjs\"" }],
+    "beforeSubmitPrompt": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-layer/watch.mjs\"" }],
+    "afterFileEdit": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-layer/watch.mjs\"" }],
+    "afterShellExecution": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-layer/watch.mjs\"" }],
+    "preCompact": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-layer/watch.mjs\"" }],
+    "stop": [{ "command": "\"C:/PATH/TO/node.exe\" \"C:/PATH/TO/cursor-layer/watch.mjs\"" }]
+  }
+}

@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+FOR-KEVIN.md
+FOR-KEVIN-*.md
+.env
+.env.*

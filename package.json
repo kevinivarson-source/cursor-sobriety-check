@@ -1,0 +1,37 @@
+{
+  "name": "cursor-layer",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A free, one-click layer for Cursor. Reminds the agent of your rules, warns you when chat memory is compressed, and keeps a private local report.",
+  "type": "module",
+  "bin": {
+    "cursor-layer": "./cli.mjs"
+  },
+  "scripts": {
+    "layer:install": "node cli.mjs install",
+    "layer:uninstall": "node cli.mjs uninstall",
+    "layer:status": "node cli.mjs status",
+    "layer:report": "node cli.mjs report --open"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "author": "Durellem Ltd",
+  "homepage": "https://github.com/kevinivarson-source/cursor-layer",
+  "bugs": {
+    "url": "https://github.com/kevinivarson-source/cursor-layer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinivarson-source/cursor-layer.git"
+  },
+  "keywords": [
+    "cursor",
+    "cursor-ide",
+    "hooks",
+    "ai",
+    "observability",
+    "durellem"
+  ]
+}
