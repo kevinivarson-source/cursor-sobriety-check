@@ -7,7 +7,7 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
-echo This removes Cursor Layer from Cursor. Your private log is kept.
+echo This removes xcursorfatiguex from Cursor. Your private log is kept.
 echo.
 node cli.mjs uninstall
 echo.

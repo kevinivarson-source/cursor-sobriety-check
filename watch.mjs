@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Cursor Layer — hook handler.
+ * xcursorfatiguex — hook handler.
  *
  * Cursor sends one JSON event on stdin and reads one JSON reply on stdout.
  * This script always fails open: even if it crashes, Cursor continues.
  *
  * What it does:
- *   1. Appends a trimmed copy of the event to ~/.cursor-layer/events.jsonl
+ *   1. Appends a trimmed copy of the event to ~/.xcursorfatiguex/events.jsonl
  *   2. On sessionStart, snapshots project rules and (optionally) reminds
  *      the agent of those rules via additional_context
  *   3. On preCompact, (optionally) shows a short warning in Cursor
@@ -16,7 +16,7 @@ import { appendFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promise
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { DATA_DIR, EVENTS_LOG, RULES_DIR } from './lib/paths.mjs';
+import { DATA_DIR, EVENTS_LOG, PRODUCT_NAME, RULES_DIR } from './lib/paths.mjs';
 import { loadConfig } from './lib/hooks.mjs';
 
 const SAFE_RESPONSE = JSON.stringify({ continue: true }) + '\n';
@@ -77,10 +77,10 @@ async function collectRules(workspaceRoot) {
 function remindFrom(snapshot) {
   const names = Object.keys(snapshot.files);
   if (!names.length) {
-    return 'Cursor Layer: this workspace has no project rule files (.cursor/rules/*.mdc or .cursorrules). Follow the user\'s instructions for the whole chat. If a later message conflicts, follow the latest user message and say so.';
+    return `${PRODUCT_NAME}: this workspace has no project rule files (.cursor/rules/*.mdc or .cursorrules). Follow the user's instructions for the whole chat. If a later message conflicts, follow the latest user message and say so.`;
   }
 
-  const header = 'Cursor Layer: follow these project rules for the whole chat. If a later user message conflicts, follow the latest user message and say so.';
+  const header = `${PRODUCT_NAME}: follow these project rules for the whole chat. If a later user message conflicts, follow the latest user message and say so.`;
   const leftover = Math.max(200, CONTEXT_BUDGET - header.length - 20);
   const perFile = Math.max(120, Math.floor(leftover / names.length));
   const body = names
@@ -105,7 +105,7 @@ function trimPayload(payload) {
 function compactWarning(payload) {
   const percent = payload.context_usage_percent ?? '?';
   const first = payload.is_first_compaction ? ' This is the first compression in this chat.' : '';
-  return `Cursor Layer: this chat is ${percent}% full, so Cursor is about to compress memory.${first} If the agent has started ignoring your rules, start a new chat.`;
+  return `${PRODUCT_NAME}: this chat is ${percent}% full, so Cursor is about to compress memory.${first} If the agent has started ignoring your rules, start a new chat.`;
 }
 
 async function main() {

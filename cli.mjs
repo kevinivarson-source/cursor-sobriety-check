@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Cursor Layer CLI
+ * xcursorfatiguex CLI
  *
  *   node cli.mjs install
  *   node cli.mjs uninstall
@@ -25,11 +25,11 @@ import {
   stripLayerHooks,
   writeHooksFile,
 } from './lib/hooks.mjs';
-import { DATA_DIR, EVENTS_LOG, LAYER_ROOT, REPORT_HTML, USER_HOOKS } from './lib/paths.mjs';
+import { DATA_DIR, EVENTS_LOG, LAYER_ROOT, PRODUCT_NAME, REPORT_HTML, USER_HOOKS } from './lib/paths.mjs';
 import { loadEvents, writeReport } from './report.mjs';
 
 const HELP = `
-Cursor Layer — a small, free add-on for Cursor
+xcursorfatiguex — a small, free add-on for Cursor
 by Durellem Ltd  ·  https://www.durellem.com
 
 What it does
@@ -45,7 +45,7 @@ Commands
   node cli.mjs install --here   Set it up for this project only
   node cli.mjs install --observe-only
                                 Log only; do not remind or warn
-  node cli.mjs uninstall        Remove Cursor Layer (keeps your log)
+  node cli.mjs uninstall        Remove xcursorfatiguex (keeps your log)
   node cli.mjs status           Check that it is working
   node cli.mjs report [--open]  Write a summary; --open shows it in a browser
 
@@ -80,7 +80,7 @@ async function install({ here, observeOnly }) {
   });
 
   const lines = [
-    'Cursor Layer is installed.',
+    `${PRODUCT_NAME} is installed.`,
     '',
     `Hooks file: ${hooksFile}`,
     `Private log: ${EVENTS_LOG}`,
@@ -94,7 +94,7 @@ async function install({ here, observeOnly }) {
     'When you want a summary, double-click SHOW-REPORT.bat',
     `(or run: node "${path.join(LAYER_ROOT, 'cli.mjs')}" report --open)`,
   ];
-  if (migrated) lines.splice(5, 0, 'Copied an older cursor-drift-watch log into the new folder.');
+  if (migrated) lines.splice(5, 0, `Copied an older log from ${migrated} into the new folder.`);
   console.log(lines.join('\n'));
 }
 
@@ -109,7 +109,7 @@ async function uninstall({ here }) {
   await writeHooksFile(hooksFile, stripLayerHooks(current.data));
   console.log(
     [
-      'Cursor Layer hooks removed.',
+      `${PRODUCT_NAME} hooks removed.`,
       `Updated: ${hooksFile}`,
       `Your private log was kept at ${DATA_DIR}`,
       'Delete that folder yourself if you also want the history gone.',
@@ -126,7 +126,7 @@ async function status({ here }) {
     try {
       const current = await readHooksFile(hooksFile);
       registered = layerIsRegistered(current.data);
-      hooksNote = registered ? 'Cursor Layer commands are present.' : 'File exists, but Cursor Layer is not listed.';
+      hooksNote = registered ? `${PRODUCT_NAME} commands are present.` : `File exists, but ${PRODUCT_NAME} is not listed.`;
     } catch (err) {
       hooksNote = err.message;
     }
@@ -137,7 +137,7 @@ async function status({ here }) {
 
   console.log(
     [
-      'Cursor Layer status',
+      `${PRODUCT_NAME} status`,
       `  Folder:     ${LAYER_ROOT}`,
       `  Node:       ${process.version} (${process.execPath})`,
       `  Hooks file: ${hooksFile}`,

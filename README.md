@@ -1,4 +1,4 @@
-# Cursor Layer
+# xcursorfatiguex
 
 A free, one-click add-on for [Cursor](https://cursor.com).
 
@@ -20,7 +20,7 @@ You need [Node.js LTS](https://nodejs.org) once. If `node -v` already prints a v
 
 ### Windows
 
-1. Download this folder: [Code → Download ZIP](https://github.com/kevinivarson-source/cursor-layer/archive/refs/heads/main.zip), then unzip it somewhere permanent, for example `Documents\cursor-layer`.
+1. Download this folder: [Code → Download ZIP](https://github.com/kevinivarson-source/xcursorfatiguex/archive/refs/heads/main.zip), then unzip it somewhere permanent, for example `Documents\xcursorfatiguex`.
 2. Double-click **`INSTALL.bat`**.
 3. Use Cursor as normal.
 
@@ -35,7 +35,7 @@ You need [Node.js LTS](https://nodejs.org) once. If `node -v` already prints a v
 Paste this into a new chat:
 
 ```text
-Please install Cursor Layer from this folder. Run: node cli.mjs install
+Please install xcursorfatiguex from this folder. Run: node cli.mjs install
 Then tell me whether status looks good.
 ```
 
@@ -51,7 +51,7 @@ When you want to know how a chat went, double-click **`SHOW-REPORT.bat`** (or ru
 
 To check it is still attached: double-click **`STATUS.bat`**.
 
-To remove it: double-click **`UNINSTALL.bat`**. Your private log stays until you delete the `.cursor-layer` folder in your home directory.
+To remove it: double-click **`UNINSTALL.bat`**. Your private log stays until you delete the `.xcursorfatiguex` folder in your home directory.
 
 ---
 
@@ -59,11 +59,11 @@ To remove it: double-click **`UNINSTALL.bat`**. Your private log stays until you
 
 | In Cursor | What it means |
 | --- | --- |
-| Nothing most of the time | Good. The layer is quiet on purpose. |
+| Nothing most of the time | Good. xcursorfatiguex is quiet on purpose. |
 | A warning that the chat is almost full | Cursor is about to compress memory. If answers start to drift, **start a new chat**. |
 | A report that mentions “possible corrections” | Your next prompt looked like “no, don’t do that”. Treat it as a hint, not a verdict. |
 
-The log lives only at `~/.cursor-layer/` (on Windows: `C:\Users\<you>\.cursor-layer\`). It includes prompts you typed, so do not copy that folder to anyone else.
+The log lives only at `~/.xcursorfatiguex/` (on Windows: `C:\Users\<you>\.xcursorfatiguex\`). It includes prompts you typed, so do not copy that folder to anyone else.
 
 ---
 
@@ -88,7 +88,7 @@ The installer writes into `~/.cursor/hooks.json` and **keeps any other hooks you
 
 - Reminding is not enforcing. The model can still ignore rules.
 - “Correction” detection is simple pattern matching.
-- Each hook starts a short Node process. The events used here are infrequent. Fine-grained `postToolUse` logging is deliberately not included, so the layer stays light.
+- Each hook starts a short Node process. The events used here are infrequent. Fine-grained `postToolUse` logging is deliberately not included, so xcursorfatiguex stays light.
 
 ---
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Cursor Layer — report
+ * xcursorfatiguex — report
  *
- * Reads ~/.cursor-layer/events.jsonl and writes a plain-language summary
+ * Reads ~/.xcursorfatiguex/events.jsonl and writes a plain-language summary
  * (markdown + a double-clickable HTML page). Pattern matching is a hint,
  * not a verdict.
  */
@@ -10,7 +10,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
-import { DATA_DIR, EVENTS_LOG, REPORT_HTML, REPORT_MD } from './lib/paths.mjs';
+import { DATA_DIR, EVENTS_LOG, PRODUCT_NAME, REPORT_HTML, REPORT_MD } from './lib/paths.mjs';
 
 const CORRECTION_PATTERNS = [
   /^\s*no[,.]/i,
@@ -220,7 +220,7 @@ function renderHtml(generatedAt, events, sessions) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cursor Layer report</title>
+  <title>${esc(PRODUCT_NAME)} report</title>
   <style>
     :root { color-scheme: light dark; }
     body { margin: 0; font-family: Georgia, "Times New Roman", serif; background: #f6f4ef; color: #1b1a17; }
@@ -240,10 +240,10 @@ function renderHtml(generatedAt, events, sessions) {
 </head>
 <body>
   <main>
-    <h1>Cursor Layer report</h1>
+    <h1>${esc(PRODUCT_NAME)} report</h1>
     <p class="lede">Generated ${esc(generatedAt)}. ${events.length} recorded events across ${sessions.length} chat${sessions.length === 1 ? '' : 's'}. Nothing here left your computer.</p>
     <div class="grid">${cards || '<p>No chats recorded yet. Use Cursor as normal, then open this report again.</p>'}</div>
-    <footer>Cursor Layer is a free tool by <a href="https://www.durellem.com">Durellem Ltd</a>. Correction flags are hints, not verdicts.</footer>
+    <footer>${esc(PRODUCT_NAME)} is a free tool by <a href="https://www.durellem.com">Durellem Ltd</a>. Correction flags are hints, not verdicts.</footer>
   </main>
 </body>
 </html>
@@ -254,7 +254,7 @@ export async function generateReport() {
   const events = await loadEvents();
   if (!events.length) {
     return {
-      markdown: 'No Cursor Layer log yet. Use Cursor as normal, then run the report again.',
+      markdown: `No ${PRODUCT_NAME} log yet. Use Cursor as normal, then run the report again.`,
       html: renderHtml(new Date().toISOString(), [], []),
       sessions: [],
       events: [],
@@ -268,7 +268,7 @@ export async function generateReport() {
 
   const generatedAt = new Date().toISOString();
   const markdown = [
-    '# Cursor Layer report',
+    `# ${PRODUCT_NAME} report`,
     `Generated ${generatedAt} — ${events.length} events across ${sessions.length} session(s).`,
     '',
     'Correction flags are hints, not verdicts. The useful signal is whether corrections cluster after memory compression.',
