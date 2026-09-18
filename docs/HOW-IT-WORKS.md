@@ -23,7 +23,7 @@ Cursor spawns `watch.mjs` and sends one JSON payload on stdin.
 
 On `sessionStart` it:
 
-1. Snapshots `.cursor/rules/*.mdc` and `.cursorrules` into `~/.xcursorfatiguex/rules-snapshots/`.
+1. Snapshots `.cursor/rules/*.mdc` and `.cursorrules` into `~/.cursor-sobriety-check/rules-snapshots/`.
 2. If `remindRules` is on, returns a short `additional_context` string (capped, not the full rule files) so the agent sees the rules at the start of the chat.
 
 On `preCompact` it:
@@ -31,7 +31,7 @@ On `preCompact` it:
 1. Logs the official compaction payload (`context_usage_percent`, token counts, first-compaction flag).
 2. If `warnOnCompact` is on, returns `user_message` so Cursor can show a warning. Compaction itself cannot be blocked — Cursor documents `preCompact` as observation-only.
 
-Every event is appended to `~/.xcursorfatiguex/events.jsonl`. Long text fields are truncated at 3,000 characters.
+Every event is appended to `~/.cursor-sobriety-check/events.jsonl`. Long text fields are truncated at 3,000 characters.
 
 ## Report
 
@@ -46,7 +46,7 @@ It writes `report.md` and `report.html` next to the log.
 
 ## Config
 
-`~/.xcursorfatiguex/config.json`:
+`~/.cursor-sobriety-check/config.json`:
 
 ```json
 {

@@ -2,7 +2,7 @@
 /**
  * Cursor Sobriety Check — report
  *
- * Reads ~/.xcursorfatiguex/events.jsonl and writes a plain-language summary
+ * Reads ~/.cursor-sobriety-check/events.jsonl and writes a plain-language summary
  * (markdown + a double-clickable HTML page). Pattern matching is a hint,
  * not a verdict.
  */
@@ -10,7 +10,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
-import { DATA_DIR, EVENTS_LOG, PRODUCT_NAME, REPORT_HTML, REPORT_MD } from './lib/paths.mjs';
+import { DATA_DIR, EVENTS_LOG, PRODUCT_NAME, REPORT_HTML, REPORT_MD, ensureDataDir } from './lib/paths.mjs';
 
 const CORRECTION_PATTERNS = [
   /^\s*no[,.]/i,
@@ -45,6 +45,7 @@ function clip(text, n = 90) {
 }
 
 export async function loadEvents() {
+  await ensureDataDir();
   if (!existsSync(EVENTS_LOG)) return [];
   const raw = await readFile(EVENTS_LOG, 'utf8');
   return raw
@@ -284,6 +285,7 @@ export async function generateReport() {
 }
 
 export async function writeReport() {
+  await ensureDataDir();
   await mkdir(DATA_DIR, { recursive: true });
   const report = await generateReport();
   await writeFile(REPORT_MD, report.markdown, 'utf8');

@@ -6,7 +6,7 @@
  * This script always fails open: even if it crashes, Cursor continues.
  *
  * What it does:
- *   1. Appends a trimmed copy of the event to ~/.xcursorfatiguex/events.jsonl
+ *   1. Appends a trimmed copy of the event to ~/.cursor-sobriety-check/events.jsonl
  *   2. On sessionStart, snapshots project rules and (optionally) reminds
  *      the agent of those rules via additional_context
  *   3. On preCompact, (optionally) shows a short warning in Cursor
@@ -16,7 +16,7 @@ import { appendFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promise
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { DATA_DIR, EVENTS_LOG, PRODUCT_NAME, RULES_DIR } from './lib/paths.mjs';
+import { DATA_DIR, EVENTS_LOG, PRODUCT_NAME, RULES_DIR, ensureDataDir } from './lib/paths.mjs';
 import { loadConfig } from './lib/hooks.mjs';
 
 const SAFE_RESPONSE = JSON.stringify({ continue: true }) + '\n';
@@ -29,6 +29,7 @@ async function readStdin() {
 }
 
 async function ensureDirs() {
+  await ensureDataDir();
   await mkdir(DATA_DIR, { recursive: true });
   await mkdir(RULES_DIR, { recursive: true });
 }
@@ -110,7 +111,7 @@ function compactWarning(payload) {
 
 async function main() {
   await ensureDirs();
-  const raw = await readStdin();
+  const raw = (await readStdin()).replace(/^\uFEFF/, '').trim();
   const config = await loadConfig();
 
   let payload = {};

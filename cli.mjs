@@ -9,7 +9,6 @@
  */
 
 import { spawn } from 'node:child_process';
-import { mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -19,13 +18,12 @@ import {
   hooksPathFor,
   layerIsRegistered,
   loadConfig,
-  migrateLegacyData,
   readHooksFile,
   saveConfig,
   stripLayerHooks,
   writeHooksFile,
 } from './lib/hooks.mjs';
-import { DATA_DIR, EVENTS_LOG, LAYER_ROOT, PRODUCT_NAME, REPORT_HTML, USER_HOOKS } from './lib/paths.mjs';
+import { DATA_DIR, EVENTS_LOG, LAYER_ROOT, PRODUCT_NAME, REPORT_HTML, USER_HOOKS, ensureDataDir, listDataBackupDirs } from './lib/paths.mjs';
 import { loadEvents, writeReport } from './report.mjs';
 
 const HELP = `
@@ -64,13 +62,12 @@ function parseArgs(argv) {
 }
 
 async function install({ here, observeOnly }) {
+  await ensureDataDir();
   const scope = here ? 'project' : 'user';
   const hooksFile = hooksPathFor(scope);
   const current = await readHooksFile(hooksFile);
   const next = applyLayerHooks(current.data, LAYER_ROOT);
   await writeHooksFile(hooksFile, next);
-  await mkdir(DATA_DIR, { recursive: true });
-  const migrated = await migrateLegacyData();
   await saveConfig({
     remindRules: !observeOnly,
     warnOnCompact: !observeOnly,
@@ -94,11 +91,11 @@ async function install({ here, observeOnly }) {
     'When you want a summary, double-click SHOW-REPORT.bat',
     `(or run: node "${path.join(LAYER_ROOT, 'cli.mjs')}" report --open)`,
   ];
-  if (migrated) lines.splice(5, 0, `Copied an older log from ${migrated} into the new folder.`);
   console.log(lines.join('\n'));
 }
 
 async function uninstall({ here }) {
+  await ensureDataDir();
   const config = await loadConfig();
   const hooksFile = here ? hooksPathFor('project') : config.hooksFile || USER_HOOKS;
   if (!existsSync(hooksFile)) {
@@ -107,17 +104,23 @@ async function uninstall({ here }) {
   }
   const current = await readHooksFile(hooksFile);
   await writeHooksFile(hooksFile, stripLayerHooks(current.data));
-  console.log(
-    [
-      `${PRODUCT_NAME} hooks removed.`,
-      `Updated: ${hooksFile}`,
-      `Your private log was kept at ${DATA_DIR}`,
-      'Delete that folder yourself if you also want the history gone.',
-    ].join('\n'),
-  );
+  const backups = listDataBackupDirs();
+  const lines = [
+    `${PRODUCT_NAME} hooks removed.`,
+    `Updated: ${hooksFile}`,
+    `Your private log was kept at ${DATA_DIR}`,
+    'Delete that folder yourself if you also want the history gone.',
+  ];
+  if (backups.length) {
+    lines.push('Migration backups were also left in place:');
+    for (const dir of backups) lines.push(`  ${dir}`);
+    lines.push('Delete those too if you do not need a recoverable copy of the old log.');
+  }
+  console.log(lines.join('\n'));
 }
 
 async function status({ here }) {
+  await ensureDataDir();
   const config = await loadConfig();
   const hooksFile = here ? hooksPathFor('project') : config.hooksFile || USER_HOOKS;
   let registered = false;
@@ -161,6 +164,7 @@ function openFile(filePath) {
 }
 
 async function report({ open }) {
+  await ensureDataDir();
   const result = await writeReport();
   console.log(result.markdown);
   console.error(`\nSaved:\n  ${REPORT_HTML}\n  (and a text copy next to it)`);

@@ -51,7 +51,7 @@ When you want to know how a chat went, double-click **`SHOW-REPORT.bat`** (or ru
 
 To check it is still attached: double-click **`STATUS.bat`**.
 
-To remove it: double-click **`UNINSTALL.bat`**. Your private log stays until you delete the `.xcursorfatiguex` folder in your home directory.
+To remove it: double-click **`UNINSTALL.bat`**. Your private log stays until you delete the `.cursor-sobriety-check` folder in your home directory.
 
 ---
 
@@ -63,7 +63,7 @@ To remove it: double-click **`UNINSTALL.bat`**. Your private log stays until you
 | A warning that the chat is almost full | Cursor is about to compress memory. If answers start to drift, **start a new chat**. |
 | A report that mentions “possible corrections” | Your next prompt looked like “no, don’t do that”. Treat it as a hint, not a verdict. |
 
-The log lives only at `~/.xcursorfatiguex/` (on Windows: `C:\Users\<you>\.xcursorfatiguex\`). It includes prompts you typed, so do not copy that folder to anyone else.
+The log lives only at `~/.cursor-sobriety-check/` (on Windows: `C:\Users\<you>\.cursor-sobriety-check\`). It includes prompts you typed, so do not copy that folder to anyone else.
 
 ---
 

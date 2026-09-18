@@ -4,7 +4,7 @@ Cursor Sobriety Check never sends data off this computer. There is no account, n
 
 ## What is stored
 
-All files are under `~/.xcursorfatiguex/` (Windows: `C:\Users\<you>\.xcursorfatiguex\`).
+All files are under `~/.cursor-sobriety-check/` (Windows: `C:\Users\<you>\.cursor-sobriety-check\`).
 
 | File | Contents |
 | --- | --- |
@@ -24,6 +24,6 @@ Long fields are truncated, but you should still treat the folder as **private**.
 ## Removing it
 
 1. Run `UNINSTALL.bat` / `./uninstall.sh` to detach the hooks.
-2. Delete the `~/.xcursorfatiguex` folder if you also want the history gone.
+2. Delete the `~/.cursor-sobriety-check` folder if you also want the history gone. Migration backups, if any, are named `~/.xcursorfatiguex.migrated-*` or `~/.cursor-layer.migrated-*`.
 
 Uninstall keeps the log on purpose, so you do not lose a report by removing the add-on.

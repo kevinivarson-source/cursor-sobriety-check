@@ -1,6 +1,6 @@
 {
   "name": "cursor-sobriety-check",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "A free, one-click add-on for Cursor. Reminds the agent of your rules, warns you when chat memory is compressed, and keeps a private local report.",
   "type": "module",
